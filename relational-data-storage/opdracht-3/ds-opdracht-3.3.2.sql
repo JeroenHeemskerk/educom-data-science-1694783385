@@ -1,1 +1,2 @@
-SELECT * FROM mhl_suppliers ORDER BY membertype, city_ID, postcode;
+SELECT * FROM mhl_hitcount 
+ORDER BY year, month ASC, hitcount DESC;
