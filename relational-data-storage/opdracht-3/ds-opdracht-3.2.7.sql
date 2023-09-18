@@ -1,3 +1,3 @@
 SELECT name, straat, huisnr, postcode 
 FROM mhl_suppliers 
-WHERE name = "'t%";
+WHERE name LIKE "'t%";
