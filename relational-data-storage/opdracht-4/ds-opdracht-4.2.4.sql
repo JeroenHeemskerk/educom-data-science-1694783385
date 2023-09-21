@@ -1,7 +1,8 @@
-SELECT s.name, p.name, y.content 
+SELECT s.name, p.name, IF(ISNULL(y.content),'NOT SET',y.content) AS value
 FROM mhl_suppliers AS s
+CROSS JOIN mhl_propertytypes AS p
 LEFT JOIN mhl_yn_properties AS y
-ON s.id = y.supplier_ID
-LEFT JOIN (SELECT * FROM mhl_propertytypes WHERE proptype = "A") AS p
-ON y.propertytype_ID = p.id
-WHERE s.city_ID = 104
+ON s.id = y.supplier_ID AND y.propertytype_ID = p.id
+INNER JOIN mhl_cities AS c
+ON s.city_ID = c.id
+WHERE c.name = 'Amsterdam' AND proptype = "A"
