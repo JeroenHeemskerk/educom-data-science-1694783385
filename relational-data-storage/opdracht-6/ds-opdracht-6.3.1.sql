@@ -1,4 +1,10 @@
-SELECT name
+SELECT name, 
+CASE
+WHEN ASCII(name) > 96 AND ASCII(name) < 123 THEN
+CONCAT(UPPER(SUBSTRING(name,1,1)),LOWER(SUBSTRING(name,2)))
+WHEN ASCII(name) = 39 THEN 
+CONCAT(LOWER(SUBSTRING(name,1,3)),UPPER(SUBSTRING(name,4,1)),LOWER(SUBSTRING(name,5))) 
+ELSE name
+END as nette_naam
 FROM mhl_cities
-WHERE ASCII(name) > 64 AND ASCII(name) < 91
 ORDER BY name
